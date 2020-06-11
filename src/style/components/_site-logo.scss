@@ -1,0 +1,9 @@
+.site-logo {
+  width: 147px;
+  height: 30px;
+  background: url("/assets/img/site-logo.png");
+  background-size: contain;
+  &.light {
+    background: url("/assets/img/site-logo-white.png");
+  }
+}

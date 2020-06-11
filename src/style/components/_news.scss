@@ -1,0 +1,35 @@
+.news {
+  button { width: 360px; }
+}
+.news-container {
+  margin: 35px -25px 40px;
+  display: flex;
+  flex-wrap: wrap;
+}
+.news-item {
+  width: 340px;
+  padding: 40px 30px;
+  margin: 30px 25px;
+  border: 1px solid $primary-bg-color-dark;
+}
+.news-image {
+  img {
+    width: 100%;
+  }
+}
+.news-content {
+  font-weight: bold;
+}
+.news-date {
+  font-size: 16px;
+  margin: 25px 0 15px;
+  display: block;
+}
+.news-title {
+  font-family: YuGothic;
+  font-size: 20px;
+  letter-spacing: 0;
+  text-align: justify;
+  @include line-clamp(1.2, 20, 3, inherit);
+  &:before { display: none; }
+}

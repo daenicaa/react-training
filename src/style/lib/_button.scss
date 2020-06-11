@@ -1,0 +1,25 @@
+button {
+  font-weight: bold;
+}
+.button {
+  height: 70px;
+  width: 100%;
+  border: 2px solid;
+  cursor: pointer;
+  transition: all 0.3s;
+  &.borderless {
+    border: none;
+    background: 0;
+  }
+  &:hover{
+    opacity: .9;
+    transform: scale(1.03);
+  }
+  @include button-modifier($default-btn-bg-color, $default-btn-text-color);
+}
+
+.button-dark {
+  font-weight: bold;
+  @include button-modifier($primary-btn-bg-color, $primary-text-color-light);
+  border: none;
+}

@@ -1,0 +1,18 @@
+.button {
+  height: 60px;
+  width: 100%;
+  border: 2px solid;
+  cursor: pointer;
+  transition: all 0.3s;
+  &:hover{
+    opacity: .9;
+    transform: scale(1.03);
+  }
+  @include button-modifier($default-btn-bg-color, $default-btn-text-color);
+}
+
+.button-dark {
+  @include button-modifier($primary-btn-bg-color, $primary-text-color-light);
+  border: none;
+  box-shadow: 4px 4px 0px -2px rgba(197,197,197,1);
+}
