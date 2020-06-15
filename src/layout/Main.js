@@ -6,17 +6,19 @@ import {
 
 import Home from '../pages/Home';
 import About from '../pages/About';
-import Topics from '../pages/Topics';
+import CreatePost from '../pages/CreatePost';
+import NewsPage from '../pages/NewsPage';
 
 class Main extends Component{
   render() {
+    let isLoggedIn = true;
     return (
       <Switch>
-        <Route path="/about">
-          <About />
+        <Route path="/create-post">
+          <CreatePost />
         </Route>
-        <Route path="/topics">
-          <Topics />
+        <Route path="/news/news-page">
+          <NewsPage isLoggedIn={isLoggedIn}/>
         </Route>
         <Route path="/">
           <Home />

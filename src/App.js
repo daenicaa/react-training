@@ -10,14 +10,15 @@ import './style/style.scss';
 
 import Header from './layout/Header';
 import Main from './layout/Main';
+import Footer from './layout/Footer';
 
 class App extends Component {
   render() {
-    const isLoggedIn = true;
     return (
         <Router>
-          <Header isLoggedIn = {isLoggedIn}/>
+          <Header />
           <Main />
+          <Footer />
         </Router>
     );
   }

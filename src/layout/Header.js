@@ -5,17 +5,15 @@ import {
 
 import Navigation from '../components/Navigation';
 import LoginControl from '../components/Login';
-import Hero from '../components/Hero';
 
 class Header extends Component {
   	render() {
   		return (
         <header className="l-header">
           <div className="l-container logo-login flex flex-align-center flex-space-between">
-            <div className="site-logo"></div>
+            <Link to="/"><div className="site-logo"></div></Link>
             <LoginControl />
           </div>
-          <Hero />
         </header>
   		);
   	}

@@ -4,7 +4,9 @@
   margin:0px auto;
   .slick-list {
     height: 666px;
+    width: 100%;
   }
+
   .slick-dotted.slick-slider {
     margin-bottom: 0;
   }
@@ -41,7 +43,10 @@
   width:100%;
   text-align:center;
 }
-.hero-item { position: relative; }
+.hero-item {
+  height: 666px;
+  position: relative;
+}
 .hero-container {
   height: 100%;
   position: absolute;
