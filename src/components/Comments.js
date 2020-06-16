@@ -16,8 +16,8 @@ class Comments extends Component {
       <section className="comments">
         <div className="l-container">
           <h2 className="comments-title">COMMENTS</h2>
-            {comments.map(item => (
-              <div className="comment" key={item.id}>
+            {comments.map((item, id) => (
+              <div className="comment" key={`comment-${id}`}>
                 {item.comment}
                 <time className="comment-date">{item.date}</time>
               </div>

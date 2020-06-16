@@ -45,8 +45,8 @@ class News extends Component {
 	        ) : (<span></span>)}
         </div>
         <div className="news-container">
-          {news.map(item => (
-            <article className="news-item" key={item.id}>
+          {news.map((item,id) => (
+            <article className="news-item" key={`news-${id}`}>
               <Link to="/news/news-page">
                 <div className="news-image">
                   <img src={item.img} alt={item.img} />

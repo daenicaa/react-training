@@ -3,7 +3,6 @@ import {
   BrowserRouter as Router,
 } from "react-router-dom";
 
-import logo from './logo.svg';
 import './App.css';
 import './style/style.scss';
 

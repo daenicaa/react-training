@@ -12,8 +12,8 @@ class CreatePost extends Component {
       <main className="create-post">
         <Breadcrumbs link={link}/>
         <div className="l-container flex flex-end">
-          <button className="button-underline" onClick="">Save Post</button>
-          <button className="button-underline" onClick="">Cancel</button>
+          <button className="button-underline">Save Post</button>
+          <button className="button-underline">Cancel</button>
         </div>
         <div className="l-container">
           <time>{today}</time>
@@ -28,7 +28,6 @@ class CreatePost extends Component {
             <img src=""  alt=""/>
           </div>
           <textarea class="form-control news-textarea content" placeholder="Content"></textarea>
-
         </div>
       </main>
 		);
