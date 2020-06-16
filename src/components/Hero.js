@@ -24,7 +24,7 @@ class Hero extends Component {
               <time className="hero-time">2019.06.19</time>
             </div>
           </div>
-          <img class="img-full" src="/assets/img/hero-img.png" />
+          <img class="img-full" src="/assets/img/hero-img.png" alt="サンプルテキスト"/>
         </div>
         <div className="hero-item">
           <div className="l-container hero-container">
@@ -35,7 +35,7 @@ class Hero extends Component {
               <time className="hero-time">2019.06.19</time>
             </div>
           </div>
-          <img class="img-full" src="/assets/img/hero-img.png" />
+          <img class="img-full" src="/assets/img/hero-img.png"  alt="サンプルテキスト"/>
         </div>
         <div className="hero-item">
           <div className="l-container hero-container">
@@ -46,7 +46,7 @@ class Hero extends Component {
               <time className="hero-time">2019.06.19</time>
             </div>
           </div>
-          <img class="img-full" src="/assets/img/hero-img.png" />
+          <img class="img-full" src="/assets/img/hero-img.png"  alt="サンプルテキスト"/>
         </div>
         </div>
       </div>

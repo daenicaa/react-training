@@ -1,22 +1,21 @@
 import React, { Component } from "react";
-import { Link } from "react-router-dom";
 
-class LoginControl extends Component {
+class Login extends Component {
   constructor(props) {
     super(props);
-    this.handleLoginClick = this.handleLoginClick.bind(this);
-    this.handleLogoutClick = this.handleLogoutClick.bind(this);
     this.handleOpenFormClick = this.handleOpenFormClick.bind(this);
     this.handleCloseFormClick = this.handleCloseFormClick.bind(this);
-    this.state = { isLoggedIn: false, isFormOpen: false };
+    this.state = { isFormOpen: false };
   }
 
-  handleLoginClick() {
-    this.setState({isLoggedIn: true, isOpenForm: false});
+  handleLoginClick = () => {
+    this.props.handleLoginClick();
+    this.setState({ isOpenForm: false });
   }
 
-  handleLogoutClick() {
-    this.setState({isLoggedIn: false, isOpenForm: false});
+  handleLogoutClick = () =>{
+    this.props.handleLogoutClick();
+    this.setState({ isOpenForm: false });
   }
 
   handleOpenFormClick() {
@@ -28,7 +27,7 @@ class LoginControl extends Component {
   }
 
   render() {
-    const isLoggedIn = this.state.isLoggedIn;
+    const isLoggedIn = this.props.isLoggedIn;
     const isOpenForm = this.state.isOpenForm;
     let button;
 
@@ -67,14 +66,6 @@ class LoginControl extends Component {
   }
 }
 
-function LoginForm(props) {
-  return (
-    <button onClick={props.onClick}>
-      LOGIN
-    </button>
-  )
-}
-
 function LoginButton(props) {
   return (
     <button className="button button-dark" onClick={props.onClick}>
@@ -106,4 +97,4 @@ function CloseForm(props) {
   );
 }
 
-export default LoginControl;
+export default Login;

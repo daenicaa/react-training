@@ -1,5 +1,4 @@
 import React, {Component} from "react";
-import { Link } from "react-router-dom";
 
 import Breadcrumbs from '../components/Breadcrumbs';
 
@@ -26,7 +25,7 @@ class CreatePost extends Component {
                 <input type="file" class="button-browse" />
               </div>
             </div>
-            <img src="" />
+            <img src=""  alt=""/>
           </div>
           <textarea class="form-control news-textarea content" placeholder="Content"></textarea>
 

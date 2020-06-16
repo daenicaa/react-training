@@ -16,16 +16,14 @@ class Comments extends Component {
       <section className="comments">
         <div className="l-container">
           <h2 className="comments-title">COMMENTS</h2>
-          <ul>
             {comments.map(item => (
-              <li className="comment">
+              <div className="comment" key={item.id}>
                 {item.comment}
                 <time className="comment-date">{item.date}</time>
-              </li>
+              </div>
             ))}
-          </ul>
           <div className="comment-form">
-            <textarea class="form-control" placeholder="Write Comment"></textarea>
+            <textarea className="form-control" placeholder="Write Comment"></textarea>
             <button className="button button-dark">SUBMIT</button>
           </div>
         </div>

@@ -35,11 +35,14 @@ class News extends Component {
         title:'サンプルテキストサンプル ルテキストサンプルテキストサンプルテキストサンプル ルテキスト'
       },
     ];
+		const isLoggedIn = this.props.isLoggedIn;
 		return (
       <section className="news">
         <div className="flex flex-space-between">
           <h2 className="section-title">NEWS</h2>
-          <Link className="button-underline" to="/create-post">Create New Post</Link>
+					{isLoggedIn ? (
+	          <Link className="button-underline" to="/create-post">Create New Post</Link>
+	        ) : (<span></span>)}
         </div>
         <div className="news-container">
           {news.map(item => (

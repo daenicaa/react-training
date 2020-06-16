@@ -1,6 +1,5 @@
 import React, {Component} from "react";
-import { Link } from "react-router-dom";
-import ReactHtmlParser, { processNodes, convertNodeToElement, htmlparser2 } from 'react-html-parser';
+import ReactHtmlParser from 'react-html-parser';
 
 import Breadcrumbs from '../components/Breadcrumbs';
 import Comments from '../components/Comments';
@@ -12,7 +11,7 @@ class NewsPage extends Component {
     this.handleEditClick = this.handleEditClick.bind(this);
     this.closeEditClick = this.closeEditClick.bind(this);
     this.saveEditClick = this.saveEditClick.bind(this);
-    this.state = { isEditing: true};
+    this.state = { isEditing: false};
   }
 
   handleEditClick() {
@@ -34,13 +33,10 @@ class NewsPage extends Component {
     };
     const isLoggedIn = this.props.isLoggedIn;
     const isEditing = this.state.isEditing;
-
 		return (
       <main className="news news-page">
         <Breadcrumbs link={news.title}/>
         <div className="l-container flex flex-end">
-
-
           {isLoggedIn
             ? [
               isEditing
@@ -56,16 +52,16 @@ class NewsPage extends Component {
         <div className="l-container">
           <time>{news.date}</time>
           {isEditing ? (
-            <textarea class="form-control news-textarea">{news.title}</textarea>
+            <textarea className="form-control news-textarea" defaultValue={news.title}></textarea>
           ): (
-            <h1 class="news-title">{news.title}</h1>
+            <h1 className="news-title">{news.title}</h1>
           )}
           <div className="news-image">
             {isEditing ? (
               <div className="button-browse-container">
-                <div class="button button-dark">
+                <div className="button button-dark">
                   <span>UPLOAD IMAGE</span>
-                  <input type="file" class="button-browse" />
+                  <input type="file" className="button-browse" />
                 </div>
               </div>
             ): (
@@ -74,13 +70,12 @@ class NewsPage extends Component {
             <img src={news.img} alt={news.title} />
           </div>
           {isEditing ? (
-            <textarea class="form-control news-textarea content">{news.content}</textarea>
+            <textarea className="form-control news-textarea content" defaultValue={news.content}></textarea>
           ): (
             <div className="news-content">
               { ReactHtmlParser(news.content) }
             </div>
           )}
-
           <Comments />
         </div>
       </main>
