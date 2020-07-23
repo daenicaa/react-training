@@ -1,7 +1,10 @@
 import React, {Component} from 'react';
 import {
   Switch,
-  Route
+  Route,
+  Link,
+  useRouteMatch,
+  useParams
 } from "react-router-dom";
 
 import Home from '../pages/Home';
@@ -10,14 +13,14 @@ import NewsPage from '../pages/NewsPage';
 
 class Main extends Component{
   render() {
+    //let match = useRouteMatch();
     return (
       <Switch>
         <Route path="/create-post">
           <CreatePost />
         </Route>
-        <Route path="/news/news-page">
-          <NewsPage isLoggedIn={this.props.isLoggedIn}/>
-        </Route>
+        <Route path="/news/:title" component={() => <NewsPage isLoggedIn={this.props.isLoggedIn}/>}></Route>
+        
         <Route path="/">
           <Home isLoggedIn={this.props.isLoggedIn}/>
         </Route>

@@ -36,6 +36,7 @@ class News extends Component {
       },
     ];
 		const isLoggedIn = this.props.isLoggedIn;
+
 		return (
       <section className="news">
         <div className="flex flex-space-between">
@@ -47,7 +48,7 @@ class News extends Component {
         <div className="news-container">
           {news.map((item,id) => (
             <article className="news-item" key={`news-${id}`}>
-              <Link to="/news/news-page">
+              <Link to={`/news/${item.title}`}>
                 <div className="news-image">
                   <img src={item.img} alt={item.img} />
                 </div>
