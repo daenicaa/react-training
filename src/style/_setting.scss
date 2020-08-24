@@ -4,7 +4,9 @@ $font-smoothing: antialiased;
 //auto,optimizeSpeed,optimizeLegibility,geometricPrecision
 $text-rendering: auto;
 
-$base-font-family: Montserrat;
+
+@import url(http://fonts.googleapis.com/css?family=Montserrat);
+$base-font-family: 'Montserrat';
 //$base-font-family: Lato;
 $base-font-size: 18px;
 $base-font-color: #101010;

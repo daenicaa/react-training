@@ -3,10 +3,12 @@
   height: 30px;
   background: url("/assets/img/site-logo.png");
   background-size: contain;
+  background-repeat: no-repeat;
   &.light {
     width: 138px;
     height: 28px;
     background: url("/assets/img/site-logo-white.png");
     background-size: contain;
+    background-repeat: no-repeat;
   }
 }
