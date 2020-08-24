@@ -1,6 +1,8 @@
 import React, {Component} from "react";
 import { Link } from "react-router-dom";
 
+import Article from '../components/Article';
+
 class News extends Component {
 	render() {
     const news = [
@@ -46,19 +48,9 @@ class News extends Component {
 	        ) : (<span></span>)}
         </div>
         <div className="news-container">
-          {news.map((item,id) => (
-            <article className="news-item" key={`news-${id}`}>
-              <Link to={`/news/${item.title}`}>
-                <div className="news-image">
-                  <img src={item.img} alt={item.img} />
-                </div>
-                <div className="news-content">
-                  <time className="news-date">{item.date}</time>
-                  <h3 className="news-title">{item.title}</h3>
-                </div>
-              </Link>
-            </article>
-          ))}
+					{news.map((item,id) => (
+						<Article item={item} id={id}/>
+					))}
         </div>
         <div className="flex flex-center">
           <button className="button button-dark">LOAD MORE</button>
