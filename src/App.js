@@ -15,7 +15,7 @@ class App extends Component {
     super(props);
     this.handleLoginClick = this.handleLoginClick.bind(this);
     this.handleLogoutClick = this.handleLogoutClick.bind(this);
-    this.state = { isLoggedIn: false};
+    this.state = { isLoggedIn: false, showRegister: false };
   }
 
   handleLoginClick() {
@@ -25,10 +25,14 @@ class App extends Component {
   handleLogoutClick() {
     this.setState({isLoggedIn: false});
   }
+
+  handleRegisterClick() {
+    this.setState({showRegister: false});
+  }
   render() {
     return (
         <Router>
-          <Header isLoggedIn={this.state.isLoggedIn} handleLoginClick={this.handleLoginClick} handleLogoutClick={this.handleLogoutClick}/>
+          <Header isLoggedIn={this.state.isLoggedIn} state={this.state} showRegister={this.state.showRegister} handleRegisterClick={this.handleRegisterClick} handleLoginClick={this.handleLoginClick} handleLogoutClick={this.handleLogoutClick}/>
           <Main isLoggedIn={this.state.isLoggedIn}/>
           <Footer />
         </Router>

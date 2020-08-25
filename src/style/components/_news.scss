@@ -1,4 +1,10 @@
 .news {
+  &.main {
+    padding-top: 100px;
+    .button-underline {
+      margin-bottom: 0;
+    }
+  }
   button {
     width: 360px;
     margin-bottom: 150px;
@@ -6,7 +12,7 @@
   .button-underline {
     width: auto;
     display: block;
-    margin-bottom: 33px;
+    margin-bottom: 20px;
     &:first-child:not(:last-child){
       margin-right: 34px;
     }

@@ -40,8 +40,8 @@ class News extends Component {
 		const isLoggedIn = this.props.isLoggedIn;
 
 		return (
-      <section className="news">
-        <div className="flex flex-space-between">
+      <section className="news main">
+        <div className="flex flex-space-between flex-align-center">
           <h2 className="section-title">NEWS</h2>
 					{isLoggedIn ? (
 	          <Link className="button-underline" to="/create-post">Create New Post</Link>

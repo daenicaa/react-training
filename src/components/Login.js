@@ -5,7 +5,8 @@ class Login extends Component {
     super(props);
     this.handleOpenFormClick = this.handleOpenFormClick.bind(this);
     this.handleCloseFormClick = this.handleCloseFormClick.bind(this);
-    this.state = { isFormOpen: false };
+    this.showRegisterModal = this.showRegisterModal.bind(this);
+    this.state = { isFormOpen: false, showRegister: false };
   }
 
   handleLoginClick = () => {
@@ -16,6 +17,7 @@ class Login extends Component {
   handleLogoutClick = () =>{
     this.props.handleLogoutClick();
     this.setState({ isOpenForm: false });
+    this.setState({ showRegister: false });
   }
 
   handleOpenFormClick() {
@@ -26,8 +28,14 @@ class Login extends Component {
     this.setState({isOpenForm: false});
   }
 
+  showRegisterModal() {
+    let value = !this.state.showRegister
+    this.setState({ showRegister: value })
+  }
+
   render() {
-    const isLoggedIn = this.props.isLoggedIn;
+    const isLoggedIn = this.props.state.isLoggedIn;
+    const showRegister = this.state.showRegister;
     const isOpenForm = this.state.isOpenForm;
     let button;
 
@@ -43,22 +51,48 @@ class Login extends Component {
       <div>
         {button}
         {isOpenForm ? (
-          <div className="form flex flex-center">
-            <div className="form-login">
-              <h2 className="form-header">LOGIN</h2>
-              <div className="form-group">
-                <label className="form-label">Email</label>
-                <input className="form-control" type="email"/>
+          <div>
+            {showRegister ? (
+              <div className="form flex flex-center">
+                <div className="form-login">
+                  <h2 className="form-header">REGISTER</h2>
+                  <div className="form-group">
+                    <label className="form-label">Email</label>
+                    <input className="form-control" type="email"/>
+                  </div>
+                  <div className="form-group">
+                    <label className="form-label">Password</label>
+                    <input className="form-control" type="password"/>
+                  </div>
+                  <div className="form-group">
+                    <label className="form-label">Confirm Password</label>
+                    <input className="form-control" type="password"/>
+                  </div>
+                  <RegisterButton onClick={this.handleLoginClick} />
+                  <div className="form-registration u-align-center">
+                    Already have an account? <a onClick={this.showRegisterModal}><strong>LOGIN HERE</strong></a>
+                  </div>
+                </div>
               </div>
-              <div className="form-group">
-                <label className="form-label">Password</label>
-                <input className="form-control" type="password"/>
+            ) : (
+              <div className="form flex flex-center">
+                <div className="form-login">
+                  <h2 className="form-header">LOGIN</h2>
+                  <div className="form-group">
+                    <label className="form-label">Email</label>
+                    <input className="form-control" type="email"/>
+                  </div>
+                  <div className="form-group">
+                    <label className="form-label">Password</label>
+                    <input className="form-control" type="password"/>
+                  </div>
+                  <LoginButton onClick={this.handleLoginClick} />
+                  <div className="form-registration u-align-center">
+                    No account yet? <a onClick={this.showRegisterModal}><strong>REGISTER HERE</strong></a>
+                  </div>
+                </div>
               </div>
-              <LoginButton onClick={this.handleLoginClick} />
-              <div className="form-registration u-align-center">
-                No account yet? <strong>REGISTER HERE</strong>
-              </div>
-            </div>
+            )}
           </div>
         ) : (<span></span>)}
       </div>
@@ -70,6 +104,14 @@ function LoginButton(props) {
   return (
     <button className="button button-dark" onClick={props.onClick}>
       LOGIN
+    </button>
+  );
+}
+
+function RegisterButton(props) {
+  return (
+    <button className="button button-dark" onClick={props.onClick}>
+      REGISTER
     </button>
   );
 }
