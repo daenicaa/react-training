@@ -4,11 +4,9 @@ import {
 } from "react-router-dom";
 
 import LoginControl from '../components/Login';
-import RegisterForm from '../components/Register';
 
 class Header extends Component {
   	render() {
-      console.log(this.props.state);
   		return (
         <header className="l-header">
           <div className="l-container logo-login flex flex-align-center flex-space-between">

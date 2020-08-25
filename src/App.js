@@ -15,7 +15,7 @@ class App extends Component {
     super(props);
     this.handleLoginClick = this.handleLoginClick.bind(this);
     this.handleLogoutClick = this.handleLogoutClick.bind(this);
-    this.state = { isLoggedIn: false, showRegister: false };
+    this.state = { isLoggedIn: false };
   }
 
   handleLoginClick() {
