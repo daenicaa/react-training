@@ -4,39 +4,84 @@ import { Link } from "react-router-dom";
 import Article from '../components/Article';
 
 class News extends Component {
+	constructor(props){
+		super(props);
+		this.loadMore = this.loadMore.bind(this);
+		this.state = {
+			news: [
+	      {
+	        date:'2019.06.19',
+	        img:'/assets/img/article-image.png',
+	        title:'サンプルテキストサンプル ルテキストサンプルテキストサンプルテキストサンプル ルテキスト'
+	      },
+	      {
+	        date:'2019.06.19',
+	        img:'/assets/img/article-image.png',
+	        title:'サンプルテキストサンプル ルテキストサンプルテキストサンプルテキストサンプル ルテキスト'
+	      },
+	      {
+	        date:'2019.06.19',
+	        img:'/assets/img/article-image.png',
+	        title:'サンプルテキストサンプル ルテキストサンプルテキストサンプルテキストサンプル ルテキスト'
+	      },
+	      {
+	        date:'2019.06.19',
+	        img:'/assets/img/article-image.png',
+	        title:'サンプルテキストサンプル ルテキストサンプルテキストサンプルテキストサンプル ルテキスト'
+	      },
+	      {
+	        date:'2019.06.19',
+	        img:'/assets/img/article-image.png',
+	        title:'サンプルテキストサンプル ルテキストサンプルテキストサンプルテキストサンプル ルテキスト'
+	      },
+	      {
+	        date:'2019.06.19',
+	        img:'/assets/img/article-image.png',
+	        title:'サンプルテキストサンプル ルテキストサンプルテキストサンプルテキストサンプル ルテキスト'
+	      },
+				{
+	        date:'2019.06.19',
+	        img:'/assets/img/article-image.png',
+	        title:'サンプルテキストサンプル ルテキストサンプルテキストサンプルテキストサンプル ルテキスト'
+	      },
+	      {
+	        date:'2019.06.19',
+	        img:'/assets/img/article-image.png',
+	        title:'サンプルテキストサンプル ルテキストサンプルテキストサンプルテキストサンプル ルテキスト'
+	      },
+	      {
+	        date:'2019.06.19',
+	        img:'/assets/img/article-image.png',
+	        title:'サンプルテキストサンプル ルテキストサンプルテキストサンプルテキストサンプル ルテキスト'
+	      },
+	      {
+	        date:'2019.06.19',
+	        img:'/assets/img/article-image.png',
+	        title:'サンプルテキストサンプル ルテキストサンプルテキストサンプルテキストサンプル ルテキスト'
+	      },
+	      {
+	        date:'2019.06.19',
+	        img:'/assets/img/article-image.png',
+	        title:'サンプルテキストサンプル ルテキストサンプルテキストサンプルテキストサンプル ルテキスト'
+	      },
+	      {
+	        date:'2019.06.19',
+	        img:'/assets/img/article-image.png',
+	        title:'サンプルテキストサンプル ルテキストサンプルテキストサンプルテキストサンプル ルテキスト'
+	      },
+	    ],
+			articlesToShow: 6
+		}
+	}
+
+	loadMore() {
+    this.setState((prev) => {
+      return { articlesToShow: prev.articlesToShow + 6 };
+    });
+  }
+
 	render() {
-    const news = [
-      {
-        date:'2019.06.19',
-        img:'/assets/img/article-image.png',
-        title:'サンプルテキストサンプル ルテキストサンプルテキストサンプルテキストサンプル ルテキスト'
-      },
-      {
-        date:'2019.06.19',
-        img:'/assets/img/article-image.png',
-        title:'サンプルテキストサンプル ルテキストサンプルテキストサンプルテキストサンプル ルテキスト'
-      },
-      {
-        date:'2019.06.19',
-        img:'/assets/img/article-image.png',
-        title:'サンプルテキストサンプル ルテキストサンプルテキストサンプルテキストサンプル ルテキスト'
-      },
-      {
-        date:'2019.06.19',
-        img:'/assets/img/article-image.png',
-        title:'サンプルテキストサンプル ルテキストサンプルテキストサンプルテキストサンプル ルテキスト'
-      },
-      {
-        date:'2019.06.19',
-        img:'/assets/img/article-image.png',
-        title:'サンプルテキストサンプル ルテキストサンプルテキストサンプルテキストサンプル ルテキスト'
-      },
-      {
-        date:'2019.06.19',
-        img:'/assets/img/article-image.png',
-        title:'サンプルテキストサンプル ルテキストサンプルテキストサンプルテキストサンプル ルテキスト'
-      },
-    ];
+
 		const isLoggedIn = this.props.isLoggedIn;
 
 		return (
@@ -48,12 +93,13 @@ class News extends Component {
 	        ) : (<span></span>)}
         </div>
         <div className="news-container">
-					{news.map((item,id) => (
+
+					{this.state.news.slice(0,this.state.articlesToShow).map((item,id) => (
 						<Article item={item} id={id}/>
 					))}
         </div>
         <div className="flex flex-center">
-          <button className="button button-dark">LOAD MORE</button>
+          <button className="button button-dark" onClick={this.loadMore}>LOAD MORE</button>
         </div>
       </section>
 		);

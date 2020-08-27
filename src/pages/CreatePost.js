@@ -1,4 +1,5 @@
 import React, {Component} from "react";
+import { Link } from "react-router-dom";
 
 import Breadcrumbs from '../components/Breadcrumbs';
 
@@ -13,7 +14,8 @@ class CreatePost extends Component {
         <Breadcrumbs link={link}/>
         <div className="l-container flex flex-end">
           <button className="button-underline">Save Post</button>
-          <button className="button-underline">Cancel</button>
+          <Link to="/"><button className="button-underline">Cancel</button></Link>
+
         </div>
         <div className="l-container">
           <time>{today}</time>
