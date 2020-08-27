@@ -1,5 +1,6 @@
 import React, {Component} from "react";
 import ReactHtmlParser from 'react-html-parser';
+import moment from 'moment';
 
 import Breadcrumbs from '../components/Breadcrumbs';
 import Comments from '../components/Comments';
@@ -12,30 +13,51 @@ class NewsPage extends Component {
     this.closeEditClick = this.closeEditClick.bind(this);
     this.saveEditClick = this.saveEditClick.bind(this);
     this.state = { isEditing: false};
+    this.state = {
+      date:'2019.06.19',
+      img:'/assets/img/hero-img.png',
+      title:'サンプルテキストサンプル ルテキストサンプルテキストサンプルテキストサンプル ルテキスト',
+      content: '<p>ここにはテキストが入ります。ここにはテキストが入りますここにはテキストが入りますここにはテキストが入りますここにはテキストが入ります。ここにはテキストが入ります。ここにはテキストが入りますここにはテキストが入りますここにはテキストが入りますここにはテキストが入ります。ここにはテキストが入ります。ここにはテキストが入りますここにはテキストが入りますここにはテキストが入りますここにはテキストが入ります。</p><p>ここにはテキストが入ります。ここにはテキストが入りますここにはテキストが入りますここにはテキストが入りますここにはテキストが入ります。ここにはテキストが入ります。ここにはテキストが入りますここにはテキストが入りますここにはテキストが入りますここにはテキストが入ります。ここにはテキストが入ります。ここにはテキストが入りますここにはテキストが入りますここにはテキストが入りますここにはテキストが入ります。</p>',
+      newimg:'',
+      newtitle: '',
+      newcontent: ''
+    };
   }
-
+  componentDidMount(){
+     this.setState({ newimg: this.state.img });
+    this.setState({ newtitle: this.state.title });
+    this.setState({ newcontent: this.state.content });
+    console.log(this.state.img);
+  }
   handleEditClick() {
     this.setState({isEditing: true});
   }
   closeEditClick() {
     this.setState({isEditing: false});
   }
+
+  handleTitleChange = (event) => {
+    this.setState({ newtitle: event.target.value });
+  }
+
+  handleContentChange = (event) => {
+    this.setState({ newcontent: event.target.value });
+  }
+
   saveEditClick() {
     this.setState({isEditing: false});
+    this.setState({ title: this.state.newtitle });
+    this.setState({ img: this.state.newimg });
+    this.setState({ content: this.state.newcontent });
   }
 
   render() {
-    const news = {
-      date:'2019.06.19',
-      img:'/assets/img/hero-img.png',
-      title:'サンプルテキストサンプル ルテキストサンプルテキストサンプルテキストサンプル ルテキスト',
-      content: '<p>ここにはテキストが入ります。ここにはテキストが入りますここにはテキストが入りますここにはテキストが入りますここにはテキストが入ります。ここにはテキストが入ります。ここにはテキストが入りますここにはテキストが入りますここにはテキストが入りますここにはテキストが入ります。ここにはテキストが入ります。ここにはテキストが入りますここにはテキストが入りますここにはテキストが入りますここにはテキストが入ります。</p><p>ここにはテキストが入ります。ここにはテキストが入りますここにはテキストが入りますここにはテキストが入りますここにはテキストが入ります。ここにはテキストが入ります。ここにはテキストが入りますここにはテキストが入りますここにはテキストが入りますここにはテキストが入ります。ここにはテキストが入ります。ここにはテキストが入りますここにはテキストが入りますここにはテキストが入りますここにはテキストが入ります。</p>'
-    };
     const isLoggedIn = this.props.isLoggedIn;
     const isEditing = this.state.isEditing;
+    let title = this.state.title;
 		return (
       <main className="news news-page">
-        <Breadcrumbs link={news.title}/>
+        <Breadcrumbs link={title}/>
         <div className="l-container flex flex-end">
           {isLoggedIn
             ? [
@@ -50,11 +72,11 @@ class NewsPage extends Component {
           }
         </div>
         <div className="l-container">
-          <time>{news.date}</time>
+          <time>{this.state.date}</time>
           {isEditing ? (
-            <textarea className="form-control news-textarea" defaultValue={news.title}></textarea>
+            <textarea className="form-control news-textarea" value={this.state.newtitle} onChange={this.handleTitleChange} ></textarea>
           ): (
-            <h1 className="news-title">{news.title}</h1>
+            <h1 className="news-title">{this.state.title}</h1>
           )}
           <div className="news-image">
             {isEditing ? (
@@ -67,13 +89,13 @@ class NewsPage extends Component {
             ): (
               <span></span>
             )}
-            <img src={news.img} alt={news.title} />
+            <img src={this.state.img} alt={this.state.title} />
           </div>
           {isEditing ? (
-            <textarea className="form-control news-textarea content" defaultValue={news.content}></textarea>
+            <textarea className="form-control news-textarea content" onChange={this.handleContentChange} value={this.state.newcontent}></textarea>
           ): (
             <div className="news-content">
-              { ReactHtmlParser(news.content) }
+              { ReactHtmlParser(this.state.content) }
             </div>
           )}
           <Comments />
