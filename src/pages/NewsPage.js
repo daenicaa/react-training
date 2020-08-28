@@ -1,6 +1,6 @@
 import React, {Component} from "react";
 import ReactHtmlParser from 'react-html-parser';
-import moment from 'moment';
+import $ from 'jquery';
 
 import Breadcrumbs from '../components/Breadcrumbs';
 import Comments from '../components/Comments';
@@ -10,9 +10,9 @@ class NewsPage extends Component {
   constructor(props) {
     super(props);
     this.handleEditClick = this.handleEditClick.bind(this);
-    this.closeEditClick = this.closeEditClick.bind(this);
+    //this.cancelEditTrigger = this.cancelEditClick.bind(this);
     this.saveEditClick = this.saveEditClick.bind(this);
-    this.state = { isEditing: false};
+    this.state = { isEditing: false, changeContent: false};
     this.state = {
       date:'2019.06.19',
       img:'/assets/img/hero-img.png',
@@ -24,31 +24,45 @@ class NewsPage extends Component {
     };
   }
   componentDidMount(){
-     this.setState({ newimg: this.state.img });
+    this.setState({ newimg: this.state.img });
     this.setState({ newtitle: this.state.title });
     this.setState({ newcontent: this.state.content });
-    console.log(this.state.img);
   }
   handleEditClick() {
     this.setState({isEditing: true});
   }
-  closeEditClick() {
-    this.setState({isEditing: false});
-  }
 
   handleTitleChange = (event) => {
-    this.setState({ newtitle: event.target.value });
+    this.setState({ newtitle: event.target.value, changeContent: true });
   }
 
   handleContentChange = (event) => {
-    this.setState({ newcontent: event.target.value });
+    this.setState({ newcontent: event.target.value, changeContent: true });
   }
 
   saveEditClick() {
-    this.setState({isEditing: false});
-    this.setState({ title: this.state.newtitle });
-    this.setState({ img: this.state.newimg });
-    this.setState({ content: this.state.newcontent });
+    this.setState({isEditing: false, changeContent: false });
+    this.setState({ title: this.state.newtitle, img: this.state.newimg, content: this.state.newcontent });
+  }
+
+  cancelEditTrigger = (event) => {
+    console.log(this.state.changeContent)
+    if(this.state.changeContent){
+      $(".mask").addClass("active");
+    } else{
+      this.setState({isEditing: false });
+    }
+    //this.setState({isEditing: false});
+  }
+
+  closeAlertModal = (event) => {
+    $(".mask").removeClass("active");
+  }
+
+  closeEditClick = (event) => {
+    $(".mask").removeClass("active");
+    this.setState({isEditing: false, changeContent: false });
+    this.setState({ newimg: this.state.img , newtitle: this.state.title ,newcontent: this.state.content });
   }
 
   render() {
@@ -58,13 +72,21 @@ class NewsPage extends Component {
 		return (
       <main className="news news-page">
         <Breadcrumbs link={title}/>
+        <div class="mask" role="dialog"></div>
+          <div class="modal" role="alert">
+          <h2>Are you sure you want to discard changes?</h2>
+          <div className="row flex-space-between">
+            <button className="col-lg-6 button button-dark" onClick={this.closeEditClick}>Yes</button>
+            <button className="col-lg-5 button" onClick={this.closeAlertModal}>No</button>
+          </div>
+        </div>
         <div className="l-container flex flex-end">
           {isLoggedIn
             ? [
               isEditing
                 ? <div className="flex flex-end">
                     <button className="button-underline" onClick={this.saveEditClick}>Save Post</button>
-                    <button className="button-underline" onClick={this.closeEditClick}>Cancel</button>
+                    <button className="button-underline" onClick={this.cancelEditTrigger}>Cancel</button>
                   </div>
                 : <button className="button-underline" onClick={this.handleEditClick}>Edit Post</button>
             ]
