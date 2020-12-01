@@ -6,7 +6,7 @@ class Login extends Component {
     this.handleOpenFormClick = this.handleOpenFormClick.bind(this);
     this.handleCloseFormClick = this.handleCloseFormClick.bind(this);
     this.showRegisterModal = this.showRegisterModal.bind(this);
-    this.state = { isFormOpen: false, showRegister: false };
+    this.state = { isFormOpen: false, showRegister: false, fade: false };
   }
 
   handleLoginClick = () => {
@@ -21,11 +21,11 @@ class Login extends Component {
   }
 
   handleOpenFormClick() {
-    this.setState({isOpenForm: true});
+    this.setState({isOpenForm: true, fade: true});
   }
 
   handleCloseFormClick() {
-    this.setState({isOpenForm: false});
+    this.setState({isOpenForm: false, fade: false});
   }
 
   showRegisterModal() {
@@ -37,6 +37,7 @@ class Login extends Component {
     const isLoggedIn = this.props.state.isLoggedIn;
     const showRegister = this.state.showRegister;
     const isOpenForm = this.state.isOpenForm;
+    const cssClasses = [ 'form flex flex-center', this.state.fade ? 'formOpened': 'formClosed' ];
     let button;
 
     if (isLoggedIn) {
@@ -46,14 +47,13 @@ class Login extends Component {
     } else {
       button = <OpenForm onClick={this.handleOpenFormClick} />;
     }
-
     return (
       <div>
         {button}
-        {isOpenForm ? (
+
           <div>
             {showRegister ? (
-              <div className="form flex flex-center">
+              <form className={cssClasses.join(' ')}>
                 <div className="form-login">
                   <h2 className="form-header">REGISTER</h2>
                   <div className="form-group">
@@ -73,9 +73,9 @@ class Login extends Component {
                     Already have an account? <a onClick={this.showRegisterModal}><strong>LOGIN HERE</strong></a>
                   </div>
                 </div>
-              </div>
+              </form>
             ) : (
-              <div className="form flex flex-center">
+              <form className={cssClasses.join(' ')}>
                 <div className="form-login">
                   <h2 className="form-header">LOGIN</h2>
                   <div className="form-group">
@@ -91,10 +91,10 @@ class Login extends Component {
                     No account yet? <a onClick={this.showRegisterModal}><strong>REGISTER HERE</strong></a>
                   </div>
                 </div>
-              </div>
+              </form>
             )}
           </div>
-        ) : (<span></span>)}
+         
       </div>
     );
   }

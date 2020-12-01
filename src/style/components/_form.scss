@@ -5,8 +5,9 @@
   position: absolute;
   left: 0;
   right: 0;
-  top: 100px;
+  top: 0;
   z-index: 2;
+  transition: all 0.3s ease-out;
   a {
     cursor: pointer;
   }
@@ -20,4 +21,22 @@
 }
 .form-registration {
   margin-top: 37px;
+}
+
+.formOpened {
+  top: 100px;
+  animation: openForm 0.4s ease-out forwards;
+}
+.formClosed {
+  animation: closeForm 0.4s ease-out forwards;
+}
+
+@keyframes openForm{
+  0% { transform: translateY(-100%); }
+  100% { transform: translateY(0);   }
+}
+
+@keyframes closeForm {
+  0% { transform: translateY(0); }
+  100% { transform: translateY(-100%);}
 }
