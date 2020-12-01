@@ -7,6 +7,10 @@ import Breadcrumbs from '../components/Breadcrumbs';
 class CreatePost extends Component {
   constructor(props) {
     super(props);
+    this.state = {
+      file: null
+    }
+    this.handleChange = this.handleChange.bind(this)
   }
   cancelEditTrigger = (event) => {
     $(".mask").addClass("active");
@@ -15,6 +19,13 @@ class CreatePost extends Component {
   closeAlertModal = (event) => {
     $(".mask").removeClass("active");
   }
+
+  handleChange(event) {
+    this.setState({
+      file: URL.createObjectURL(event.target.files[0])
+    })
+  }
+
   render() {
     const link = 'Create New Post';
     const date = new Date();
@@ -22,8 +33,8 @@ class CreatePost extends Component {
 		return (
       <main className="create-post">
         <Breadcrumbs link={link}/>
-        <div class="mask" role="dialog"></div>
-        <div class="modal" role="alert">
+        <div className="mask" role="dialog"></div>
+        <div className="modal" role="alert">
           <h2>Are you sure you want to Cancel?</h2>
           <div className="row flex-space-between">
             <Link className="col-lg-6" to="/"><button className="button button-dark">Yes</button></Link>
@@ -36,17 +47,17 @@ class CreatePost extends Component {
         </div>
         <div className="l-container">
           <time>{today}</time>
-          <textarea class="form-control news-textarea" placeholder="Title"></textarea>
+          <textarea className="form-control news-textarea" placeholder="Title"></textarea>
           <div className="create-post-image">
             <div className="button-browse-container">
-              <div class="button button-dark">
+              <div className="button button-dark">
                 <span>UPLOAD IMAGE</span>
-                <input type="file" class="button-browse" />
+                <input type="file" className="button-browse" onChange={this.handleChange}/>
               </div>
             </div>
-            <img src=""  alt=""/>
+            <img src={this.state.file}  alt=""/>
           </div>
-          <textarea class="form-control news-textarea content" placeholder="Content"></textarea>
+          <textarea className="form-control news-textarea content" placeholder="Content"></textarea>
         </div>
       </main>
 		);
