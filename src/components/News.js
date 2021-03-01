@@ -98,9 +98,11 @@ class News extends Component {
 						<Article key={`article-${id}`} item={item} id={id}/>
 					))}
         </div>
-        <div className="flex flex-center">
-          <button className="button button-dark" onClick={this.loadMore}>LOAD MORE</button>
-        </div>
+				{this.state.news.length >= this.state.articlesToShow ? (
+	        <div className="flex flex-center">
+	          <button className="button button-dark" onClick={this.loadMore}>LOAD MORE</button>
+	        </div>
+				): (<span></span>)}
       </section>
 		);
 	}
