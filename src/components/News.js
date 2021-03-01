@@ -95,7 +95,7 @@ class News extends Component {
         <div className="news-container">
 
 					{this.state.news.slice(0,this.state.articlesToShow).map((item,id) => (
-						<Article item={item} id={id}/>
+						<Article key={`article-${id}`} item={item} id={id}/>
 					))}
         </div>
         <div className="flex flex-center">

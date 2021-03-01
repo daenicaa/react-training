@@ -9,9 +9,10 @@ class Login extends Component {
     this.state = { isFormOpen: false, showRegister: false, fade: false };
   }
 
-  handleLoginClick = () => {
-    this.props.handleLoginClick();
-    this.setState({ isOpenForm: false });
+  handleLoginClick = (e) => {
+    e.preventDefault();
+    this.props.handleLoginClick(e);
+    this.setState({ isOpenForm: false, fade: false });
   }
 
   handleLogoutClick = () =>{
@@ -68,7 +69,7 @@ class Login extends Component {
                     <label className="form-label">Confirm Password</label>
                     <input className="form-control" type="password"/>
                   </div>
-                  <RegisterButton onClick={this.handleLoginClick} />
+                  <RegisterButton onClick={(e) => {this.handleLoginClick(e)}} />
                   <div className="form-registration u-align-center">
                     Already have an account? <a onClick={this.showRegisterModal}><strong>LOGIN HERE</strong></a>
                   </div>
@@ -86,7 +87,7 @@ class Login extends Component {
                     <label className="form-label">Password</label>
                     <input className="form-control" type="password"/>
                   </div>
-                  <LoginButton onClick={this.handleLoginClick} />
+                  <LoginButton onClick={(e) => {this.handleLoginClick(e)}} />
                   <div className="form-registration u-align-center">
                     No account yet? <a onClick={this.showRegisterModal}><strong>REGISTER HERE</strong></a>
                   </div>
@@ -94,7 +95,7 @@ class Login extends Component {
               </form>
             )}
           </div>
-         
+
       </div>
     );
   }
